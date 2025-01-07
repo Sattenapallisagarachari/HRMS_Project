@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Generate a random number between 1 and 10
+target=$(( RANDOM % 10 + 1 ))
+attempts=0
+
+echo "Welcome to the Number Guessing Game!"
+echo "I have chosen a number between 1 and 10. Can you guess it"
+
+while true; do
+    read -p "Enter your guess: " guess
+    attempts=$(( attempts + 1 ))
+
+    if [[ $guess -lt $target ]]; then
+        echo "Too low! Try again."
+    elif [[ $guess -gt $target ]]; then
+        echo "Too high! Try again."
+    else
+        echo "Congratulations! You guessed the number in $attempts attempts!"
+        break
+    fi
+done
