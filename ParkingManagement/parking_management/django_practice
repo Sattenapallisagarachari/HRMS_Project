@@ -1,0 +1,596 @@
+Welcome to Ubuntu 24.04.1 LTS (GNU/Linux 5.15.167.4-microsoft-standard-WSL2 x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Jan 20 05:13:13 UTC 2025
+
+  System load:  0.24                Processes:             90
+  Usage of /:   0.6% of 1006.85GB   Users logged in:       0
+  Memory usage: 12%                 IPv4 address for eth0: 172.18.27.83
+  Swap usage:   0%
+
+  => There is 1 zombie process.
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+3 additional security updates can be applied with ESM Apps.
+Learn more about enabling ESM Apps service at https://ubuntu.com/esm
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+This message is shown once a day. To disable it please create the
+/home/sagar/.hushlogin file.
+sagar@Sagar:~$ sudo apt update
+[sudo] password for sagar:
+Hit:1 http://archive.ubuntu.com/ubuntu noble InRelease
+Get:2 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:5 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [586 kB]
+Get:6 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [775 kB]
+Get:7 http://archive.ubuntu.com/ubuntu noble-updates/main Translation-en [176 kB]
+Get:8 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [151 kB]
+Get:9 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [974 kB]
+Get:10 http://archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [242 kB]
+Get:11 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [309 kB]
+Get:12 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Components [212 B]
+Get:13 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:14 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [208 B]
+Get:15 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [11.7 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [216 B]
+Get:17 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
+Get:18 http://security.ubuntu.com/ubuntu noble-security/main Translation-en [114 kB]
+Get:19 http://security.ubuntu.com/ubuntu noble-security/main amd64 Components [7220 B]
+Get:20 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [800 kB]
+Get:21 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Components [52.0 kB]
+Get:22 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]
+Get:23 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [208 B]
+Fetched 4579 kB in 3s (1435 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+26 packages can be upgraded. Run 'apt list --upgradable' to see them.
+sagar@Sagar:~$ python3 --version
+Python 3.12.3
+sagar@Sagar:~$ mkdir ParkingManagement
+sagar@Sagar:~$ pwd
+/home/sagar
+sagar@Sagar:~$ cd ParkingManagement
+sagar@Sagar:~/ParkingManagement$ python3 -m venv venv
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt install python3.12-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: /home/sagar/ParkingManagement/venv/bin/python3
+
+sagar@Sagar:~/ParkingManagement$     apt install python3.12-venv
+E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
+sagar@Sagar:~/ParkingManagement$ cd ..
+sagar@Sagar:~$ python3 -m venv venv
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt install python3.12-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: /home/sagar/venv/bin/python3
+
+sagar@Sagar:~$     apt install python3.12-venv
+E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
+sagar@Sagar:~$ sudo     apt install python3.12-venv
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  libnsl2 libsecret-tools msmtp
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  python3-pip-whl python3-setuptools-whl
+The following NEW packages will be installed:
+  python3-pip-whl python3-setuptools-whl python3.12-venv
+0 upgraded, 3 newly installed, 0 to remove and 26 not upgraded.
+Need to get 2424 kB of archives.
+After this operation, 2771 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3-pip-whl all 24.0+dfsg-1ubuntu1.1 [1703 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3-setuptools-whl all 68.1.2-2ubuntu1.1 [716 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3.12-venv amd64 3.12.3-1ubuntu0.3 [5678 B]
+Fetched 2424 kB in 4s (613 kB/s)
+Selecting previously unselected package python3-pip-whl.
+(Reading database ... 117542 files and directories currently installed.)
+Preparing to unpack .../python3-pip-whl_24.0+dfsg-1ubuntu1.1_all.deb ...
+Unpacking python3-pip-whl (24.0+dfsg-1ubuntu1.1) ...
+Selecting previously unselected package python3-setuptools-whl.
+Preparing to unpack .../python3-setuptools-whl_68.1.2-2ubuntu1.1_all.deb ...
+Unpacking python3-setuptools-whl (68.1.2-2ubuntu1.1) ...
+Selecting previously unselected package python3.12-venv.
+Preparing to unpack .../python3.12-venv_3.12.3-1ubuntu0.3_amd64.deb ...
+Unpacking python3.12-venv (3.12.3-1ubuntu0.3) ...
+Setting up python3-setuptools-whl (68.1.2-2ubuntu1.1) ...
+Setting up python3-pip-whl (24.0+dfsg-1ubuntu1.1) ...
+Setting up python3.12-venv (3.12.3-1ubuntu0.3) ...
+sagar@Sagar:~$ python3 -m venv venv
+sagar@Sagar:~$ source venv/bin/activate
+(venv) sagar@Sagar:~$ pip install django
+Collecting django
+  Downloading Django-5.1.5-py3-none-any.whl.metadata (4.2 kB)
+Collecting asgiref<4,>=3.8.1 (from django)
+  Downloading asgiref-3.8.1-py3-none-any.whl.metadata (9.3 kB)
+Collecting sqlparse>=0.3.1 (from django)
+  Downloading sqlparse-0.5.3-py3-none-any.whl.metadata (3.9 kB)
+Downloading Django-5.1.5-py3-none-any.whl (8.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━╺ 8.0/8.3 MB 218.5 kB/s eta 0:00:02   ━━━━━━━━━━━━━━━━━━━━━━━━━━━╺ 8.1/8.3 MB 218.9 kB/s eta 0:00:01
+ERROR: Operation cancelled by user
+(venv) sagar@Sagar:~$ cd ParkingManagement
+(venv) sagar@Sagar:~/ParkingManagement$ source venv/bin/activate
+-bash: venv/bin/activate: No such file or directory
+(venv) sagar@Sagar:~/ParkingManagement$ django-admin startproject
+ parking_management
+Command 'django-admin' not found, but can be installed with:
+sudo apt install python3-django
+(venv) sagar@Sagar:~/ParkingManagement$ sudo apt install python3-django
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  libnsl2 libsecret-tools msmtp
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  javascript-common libjs-jquery python3-asgiref
+  python3-sqlparse
+Suggested packages:
+  apache2 | lighttpd | httpd bpython3 geoip-database-contrib
+  gettext ipython3 libgdal20 libsqlite3-mod-spatialite
+  python-django-doc python3-flup python3-memcache
+  python3-mysqldb python3-psycopg2 python3-selenium
+  python3-sqlite python-sqlparse-doc
+The following NEW packages will be installed:
+  javascript-common libjs-jquery python3-asgiref python3-django
+  python3-sqlparse
+0 upgraded, 5 newly installed, 0 to remove and 26 not upgraded.
+Need to get 3311 kB of archives.
+After this operation, 26.8 MB of additional disk space will be used.
+Do you want to continue? [Y/n]
+Get:1 http://archive.ubuntu.com/ubuntu noble/main amd64 javascript-common all 11+nmu1 [5936 B]
+Get:2 http://archive.ubuntu.com/ubuntu noble/main amd64 libjs-jquery all 3.6.1+dfsg+~3.5.14-1 [328 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble/main amd64 python3-asgiref all 3.7.2-1 [24.8 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 python3-sqlparse all 0.4.4-1ubuntu0.1 [31.8 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 python3-django all 3:4.2.11-1ubuntu1.5 [2921 kB]
+Fetched 3311 kB in 3s (954 kB/s)
+Selecting previously unselected package javascript-common.
+(Reading database ... 117558 files and directories currently installed.)
+Preparing to unpack .../javascript-common_11+nmu1_all.deb ...
+Unpacking javascript-common (11+nmu1) ...
+Selecting previously unselected package libjs-jquery.
+Preparing to unpack .../libjs-jquery_3.6.1+dfsg+~3.5.14-1_all.deb ...
+Unpacking libjs-jquery (3.6.1+dfsg+~3.5.14-1) ...
+Selecting previously unselected package python3-asgiref.
+Preparing to unpack .../python3-asgiref_3.7.2-1_all.deb ...
+Unpacking python3-asgiref (3.7.2-1) ...
+Selecting previously unselected package python3-sqlparse.
+Preparing to unpack .../python3-sqlparse_0.4.4-1ubuntu0.1_all.deb ...
+Unpacking python3-sqlparse (0.4.4-1ubuntu0.1) ...
+Selecting previously unselected package python3-django.
+Preparing to unpack .../python3-django_3%3a4.2.11-1ubuntu1.5_all.deb ...
+Unpacking python3-django (3:4.2.11-1ubuntu1.5) ...
+Setting up javascript-common (11+nmu1) ...
+Setting up python3-sqlparse (0.4.4-1ubuntu0.1) ...
+Setting up libjs-jquery (3.6.1+dfsg+~3.5.14-1) ...
+Setting up python3-asgiref (3.7.2-1) ...
+Setting up python3-django (3:4.2.11-1ubuntu1.5) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+(venv) sagar@Sagar:~/ParkingManagement$ django-admin startproject parking_management
+(venv) sagar@Sagar:~/ParkingManagement$ python3 manage.py startap
+p parking
+python3: can't open file '/home/sagar/ParkingManagement/manage.py': [Errno 2] No such file or directory
+(venv) sagar@Sagar:~/ParkingManagement$ python3 manage startapp p
+arking
+python3: can't open file '/home/sagar/ParkingManagement/manage': [Errno 2] No such file or directory
+(venv) sagar@Sagar:~/ParkingManagement$ pip install django
+Collecting django
+  Using cached Django-5.1.5-py3-none-any.whl.metadata (4.2 kB)
+Collecting asgiref<4,>=3.8.1 (from django)
+  Using cached asgiref-3.8.1-py3-none-any.whl.metadata (9.3 kB)
+Collecting sqlparse>=0.3.1 (from django)
+  Using cached sqlparse-0.5.3-py3-none-any.whl.metadata (3.9 kB)
+Downloading Django-5.1.5-py3-none-any.whl (8.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.3/8.3 MB 619.7 kB/s eta 0:00:00
+Downloading asgiref-3.8.1-py3-none-any.whl (23 kB)
+Downloading sqlparse-0.5.3-py3-none-any.whl (44 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.4/44.4 kB 550.9 kB/s eta 0:00:00
+Installing collected packages: sqlparse, asgiref, django
+Successfully installed asgiref-3.8.1 django-5.1.5 sqlparse-0.5.3
+(venv) sagar@Sagar:~/ParkingManagement$ python3 manage.py startap
+p parking
+python3: can't open file '/home/sagar/ParkingManagement/manage.py': [Errno 2] No such file or directory
+(venv) sagar@Sagar:~/ParkingManagement$ python3 manage startapp p
+arking
+python3: can't open file '/home/sagar/ParkingManagement/manage': [Errno 2] No such file or directory
+(venv) sagar@Sagar:~/ParkingManagement$ ls
+parking_management  venv
+(venv) sagar@Sagar:~/ParkingManagement$ django-admin startproject parking_management .
+(venv) sagar@Sagar:~/ParkingManagement$ ls
+manage.py  parking_management  venv
+(venv) sagar@Sagar:~/ParkingManagement$ python3 manage.py startapp parking
+(venv) sagar@Sagar:~/ParkingManagement$ cd parking_management
+(venv) sagar@Sagar:~/ParkingManagement/parking_management$ ls
+__init__.py  asgi.py    parking_management  urls.py
+__pycache__  manage.py  settings.py         wsgi.py
+(venv) sagar@Sagar:~/ParkingManagement/parking_management$ code s
+ettings.py
+(venv) sagar@Sagar:~/ParkingManagement/parking_management$ python
+3 manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+January 20, 2025 - 05:44:28
+Django version 5.1.5, using settings 'parking_management.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+^C(venv) sagar@Sagar:~/ParkingManagement/parking_management$ ls pking
+ls: cannot access 'parking': No such file or directory
+(venv) sagar@Sagar:~/ParkingManagement/parking_management$ python3 manage.py makemigrations
+No changes detected
+(venv) sagar@Sagar:~/ParkingManagement/parking_management$ python3 manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying sessions.0001_initial... OK
+(venv) sagar@Sagar:~/ParkingManagement/parking_management$ python3 manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+January 20, 2025 - 05:49:16
+Django version 5.1.5, using settings 'parking_management.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+[20/Jan/2025 05:49:45] "GET / HTTP/1.1" 200 12068
+Not Found: /favicon.ico
+[20/Jan/2025 05:49:45] "GET /favicon.ico HTTP/1.1" 404 2220
+^C(venv) sagar@Sagar:~/ParkingManagement/parking_management$ ls
+__init__.py  db.sqlite3          settings.py
+__pycache__  manage.py           urls.py
+asgi.py      parking_management  wsgi.py
+(venv) sagar@Sagar:~/ParkingManagement/parking_management$ cd par
+king_mangement
+-bash: cd: parking_mangement: No such file or directory
+(venv) sagar@Sagar:~/ParkingManagement/parking_management$ cd ..
+(venv) sagar@Sagar:~/ParkingManagement$ cd ..
+(venv) sagar@Sagar:~$ cd parking
+-bash: cd: parking: No such file or directory
+(venv) sagar@Sagar:~$ ls
+'!DOCTYPE.html'
+ DigiCertTLSECCP384RootG5.crt.pem
+ DigiCertTLSECCP384RootG5.crt.pem:Zone.Identifier
+ Linux_Basic_Commands
+ Linux_commands
+ ParkingManagement
+ browser
+ dead.letter
+ linux_commands
+ moviepy
+ my.html
+ numbergame
+ snap
+ venv
+ workspace
+(venv) sagar@Sagar:~$ cd ParkingManagement
+(venv) sagar@Sagar:~/ParkingManagement$ ls
+manage.py  parking  parking_management  venv
+(venv) sagar@Sagar:~/ParkingManagement$ cd parking
+(venv) sagar@Sagar:~/ParkingManagement/parking$ ls
+__init__.py  apps.py     models.py  views.py
+admin.py     migrations  tests.py
+(venv) sagar@Sagar:~/ParkingManagement/parking$ cd ..
+(venv) sagar@Sagar:~/ParkingManagement$ cd parking
+(venv) sagar@Sagar:~/ParkingManagement/parking$ ls
+__init__.py  apps.py     models.py  views.py
+admin.py     migrations  tests.py
+(venv) sagar@Sagar:~/ParkingManagement/parking$ code models.py
+(venv) sagar@Sagar:~/ParkingManagement/parking$ python3 manage.py
+ makemigrations
+python3: can't open file '/home/sagar/ParkingManagement/parking/manage.py': [Errno 2] No such file or directory
+(venv) sagar@Sagar:~/ParkingManagement/parking$ ls
+__init__.py  apps.py     models.py  views.py
+admin.py     migrations  tests.py
+(venv) sagar@Sagar:~/ParkingManagement/parking$ cd ..
+(venv) sagar@Sagar:~/ParkingManagement$ ls
+manage.py  parking  parking_management  venv
+(venv) sagar@Sagar:~/ParkingManagement$ python3 manage.py makemigrations
+Traceback (most recent call last):
+  File "/home/sagar/ParkingManagement/manage.py", line 22, in <module>
+    main()
+  File "/home/sagar/ParkingManagement/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 416, in execute
+    django.setup()
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/apps/registry.py", line 116, in populate
+    app_config.import_models()
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/apps/config.py", line 269, in import_models
+    self.models_module = import_module(models_module_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 991, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1129, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1059, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/sagar/ParkingManagement/parking/models.py", line 7
+    retun f"slot {'occupied' if self.is_occupied else 'Available'}"
+          ^^
+SyntaxError: invalid syntax
+(venv) sagar@Sagar:~/ParkingManagement$ code manage.py
+(venv) sagar@Sagar:~/ParkingManagement$ python3 manage.py makemigrations
+Traceback (most recent call last):
+  File "/home/sagar/ParkingManagement/manage.py", line 22, in <module>
+    main()
+  File "/home/sagar/ParkingManagement/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 416, in execute
+    django.setup()
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/apps/registry.py", line 116, in populate
+    app_config.import_models()
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/apps/config.py", line 269, in import_models
+    self.models_module = import_module(models_module_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 991, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1129, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1059, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/sagar/ParkingManagement/parking/models.py", line 7
+    retun f"slot {'occupied' if self.is_occupied else 'Available'}"
+          ^^
+SyntaxError: invalid syntax
+(venv) sagar@Sagar:~/ParkingManagement$ manage.py  parking  parking_management  venv
+(venv) sagar@Sagar:~/ParkingManagement$ python3 manage.py makemigrations
+Traceback (most recent call last):
+  File "/home/sagar/ParkingManagement/manage.py", line 22, in <module>
+    main()
+  File "/home/sagar/ParkingManagement/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 416, in execute
+    django.setup()
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/apps/registry.py", line 116, in populate
+    app_config.import_models()
+  File "/home/sagar/venv/lib/python3.12/site-packages/django/apps/config.py", line 269, in import_models
+    self.models_module = import_module(models_module_name)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_lSyntaxError: invalid synta' if self.is_occupied else 'Available'
+manage.py: command not found
+-bash: syntax error near unexpected token `sagar@Sagar:~/ParkingManagement$'
+-bash: syntax error near unexpected token `most'
+-bash: syntax error near unexpected token `newline'
+-bash: syntax error near unexpected token `File'
+-bash: syntax error near unexpected token `sys.argv'
+Command 'File' not found, did you mean:
+  command 'kile' from deb kile (4:2.9.93-2)
+  command 'file' from deb file (1:5.45-2)
+  command 'vile' from deb vile (9.8y-3)
+  command 'zile' from deb zile (2.6.2-2)
+Try: sudo apt install <deb name>
+-bash: syntax error near unexpected token `File'
+-bash: syntax error near unexpected token `File'
+-bash: syntax error near unexpected token `settings.INSTALLED_APPS'
+Command 'File' not found, did you mean:
+  command 'zile' from deb zile (2.6.2-2)
+  command 'file' from deb file (1:5.45-2)
+  command 'vile' from deb vile (9.8y-3)
+  command 'kile' from deb kile (4:2.9.93-2)
+Try: sudo apt install <deb name>
+-bash: syntax error near unexpected token `File'
+-bash: syntax error near unexpected token `('
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^: command not found
+Command 'File' not found, did you mean:
+  command 'vile' from deb vile (9.8y-3)
+  command 'kile' from deb kile (4:2.9.93-2)
+  command 'file' from deb file (1:5.45-2)
+  command 'zile' from deb zile (2.6.2-2)
+Try: sudo apt install <deb name>
+-bash: syntax error near unexpected token `('
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^: command not found
+Command 'File' not found, did you mean:
+  command 'zile' from deb zile (2.6.2-2)
+  command 'file' from deb file (1:5.45-2)
+  command 'vile' from deb vile (9.8y-3)
+  command 'kile' from deb kile (4:2.9.93-2)
+Try: sudo apt install <deb name>
+Command 'File' not found, did you mean:
+  command 'kile' from deb kile (4:2.9.93-2)
+  command 'zile' from deb zile (2.6.2-2)
+  command 'vile' from deb vile (9.8y-3)
+  command 'file' from deb file (1:5.45-2)
+Try: sudo apt install <deb name>
+Command 'File' not found, did you mean:
+  command 'zile' from deb zile (2.6.2-2)
+  command 'file' from deb file (1:5.45-2)
+  command 'vile' from deb vile (9.8y-3)
+  command 'kile' from deb kile (4:2.9.93-2)
+Try: sudo apt install <deb name>
+Command 'File' not found, did you mean:
+  command 'vile' from deb vile (9.8y-3)
+  command 'file' from deb file (1:5.45-2)
+  command 'zile' from deb zile (2.6.2-2)
+  command 'kile' from deb kile (4:2.9.93-2)
+Try: sudo apt install <deb name>
+Command 'File' not found, did you mean:
+  command 'vile' from deb vile (9.8y-3)
+  command 'kile' from deb kile (4:2.9.93-2)
+  command 'zile' from deb zile (2.6.2-2)
+  command 'file' from deb file (1:5.45-2)
+Try: sudo apt install <deb name>
+Command 'File' not found, did you mean:
+  command 'zile' from deb zile (2.6.2-2)
+  command 'kile' from deb kile (4:2.9.93-2)
+  command 'vile' from deb vile (9.8y-3)
+  command 'file' from deb file (1:5.45-2)
+Try: sudo apt install <deb name>
+Command 'File' not found, did you mean:
+  command 'file' from deb file (1:5.45-2)
+  command 'kile' from deb kile (4:2.9.93-2)
+  command 'vile' from deb vile (9.8y-3)
+  command 'zile' from deb zile (2.6.2-2)
+Try: sudo apt install <deb name>
+Command 'File' not found, did you mean:
+  command 'zile' from deb zile (2.6.2-2)
+  command 'kile' from deb kile (4:2.9.93-2)
+  command 'file' from deb file (1:5.45-2)
+  command 'vile' from deb vile (9.8y-3)
+Try: sudo apt install <deb name>
+Command 'File' not found, did you mean:
+  command 'zile' from deb zile (2.6.2-2)
+  command 'file' from deb file (1:5.45-2)
+  command 'vile' from deb vile (9.8y-3)
+  command 'kile' from deb kile (4:2.9.93-2)
+Try: sudo apt install <deb name>
+Command 'retun' not found, did you mean:
+  command 'rerun' from deb rerun (0.13.1-3)
+Try: sudo apt install <deb name>
+^^: command not found
+SyntaxError:: command not found
+(venv) sagar@Sagar:~/ParkingManagement$ python3 manage.py makemigrations
+Migrations for 'parking':
+  parking/migrations/0001_initial.py
+    + Create model ParkingSlot
+(venv) sagar@Sagar:~/ParkingManagement$ python3 manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, parking, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying parking.0001_initial... OK
+  Applying sessions.0001_initial... OK
+(venv) sagar@Sagar:~/ParkingManagement$ ls
+db.sqlite3  manage.py  parking  parking_management  venv
+(venv) sagar@Sagar:~/ParkingManagement$ cd parking
+(venv) sagar@Sagar:~/ParkingManagement/parking$ ls
+__init__.py  admin.py  migrations  tests.py
+__pycache__  apps.py   models.py   views.py
+(venv) sagar@Sagar:~/ParkingManagement/parking$ code views.py
+(venv) sagar@Sagar:~/ParkingManagement/parking$ ls
+__init__.py  admin.py  migrations  tests.py
+__pycache__  apps.py   models.py   views.py
+(venv) sagar@Sagar:~/ParkingManagement/parking$ cd ..
+(venv) sagar@Sagar:~/ParkingManagement$ ls
+db.sqlite3  manage.py  parking  parking_management  venv
+(venv) sagar@Sagar:~/ParkingManagement$ cd parking_management
+(venv) sagar@Sagar:~/ParkingManagement/parking_management$ ls
+__init__.py  db.sqlite3          settings.py
+__pycache__  manage.py           urls.py
+asgi.py      parking_management  wsgi.py
+(venv) sagar@Sagar:~/ParkingManagement/parking_management$ cd ..
+(venv) sagar@Sagar:~/ParkingManagement$ cd parking
+(venv) sagar@Sagar:~/ParkingManagement/parking$ ls
+__init__.py  admin.py  migrations  tests.py
+__pycache__  apps.py   models.py   views.py
+(venv) sagar@Sagar:~/ParkingManagement/parking$ nano urls.py
+(venv) sagar@Sagar:~/ParkingManagement/parking$ cd..
+cd..: command not found
+(venv) sagar@Sagar:~/ParkingManagement/parking$ cd ..
+(venv) sagar@Sagar:~/ParkingManagement$ cd parking_management
+(venv) sagar@Sagar:~/ParkingManagement/parking_management$ ls
+__init__.py  db.sqlite3          settings.py
+__pycache__  manage.py           urls.py
+asgi.py      parking_management  wsgi.py
+(venv) sagar@Sagar:~/ParkingManagement/parking_management$ nano urls.py
+(venv) sagar@Sagar:~/ParkingManagement/parking_management$ python
+ manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+January 20, 2025 - 12:54:48
+Django version 5.1.5, using settings 'parking_management.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+^C(venv) sagar@Sagar:~/ParkingManagement/parking_management$ https://127.0.0.1:8000/parking/register/
+$: command not found
