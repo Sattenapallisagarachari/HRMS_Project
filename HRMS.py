@@ -5,12 +5,9 @@ def display_menu():
     print("3. Activate/Inactivate Employee")
     print("4. View Employees")
     print("5. Delete Employee")
-    print("6. View Salaries")
-    print("7. Add/Update Salary")
-    print("8. Exit")
+    print("6. Exit")
 
 employees = {}
-salaries = {}
 
 def add_employee(employees):
     emp_id = input("Enter Employee ID: ")
@@ -71,26 +68,10 @@ def delete_employee(employees):
     else:
         print("\nEmployee Not Found!")
 
-def add_salary(name, salary):
-    salaries[name] = salary
-    print("Added", name, "with salary of", salary)
-
-def update_salary(name, new_salary):
-    if name in salaries:
-        salaries[name] = new_salary
-        print("Updated", name, "'s salary to", new_salary)
-
-def display_salaries():
-    if not salaries:
-        print("No employee found")
-    else:
-        for name, salary in salaries.items():
-            print(name, ":", salary)
-
-
+# Main loop
 while True:
     display_menu()
-    choice = input("Select an option between 1-8: ")
+    choice = input("Select an option between 1-6: ")
 
     if choice == '1':
         add_employee(employees)
@@ -103,12 +84,6 @@ while True:
     elif choice == '5':
         delete_employee(employees)
     elif choice == '6':
-        display_salaries()
-    elif choice == '7':
-        name = input("Enter Employee Name: ")
-        salary = int(input("Enter Salary: "))
-        add_salary(name, salary)
-    elif choice == '8':
         print("\nExiting Employee Management System...!")
         break
     else:
