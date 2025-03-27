@@ -5,13 +5,16 @@ def display_menu():
     print("3. Activate/Inactivate Employee")
     print("4. View Employees")
     print("5. Delete Employee")
-    print("6. Exit")
+    print("6. View Salaries")
+    print("7. Add/Update Salary")
+    print("8. Exit")
 
+employees = {}
+salaries = {}
 
 def add_employee(employees):
     emp_id = input("Enter Employee ID: ")
     name = input("Enter Employee Name: ")
-
     email = input("Enter Employee Email: ")
     phone = input("Enter Employee Phone Number: ")
     department = input("Enter Employee Department: ")
@@ -28,7 +31,6 @@ def add_employee(employees):
     }
     print(f"\n Employee {name} (ID: {emp_id}) added successfully!\n")
 
-
 def search_employee(employees):
     emp_id = input("\nEnter Employee ID to search: ")
     if emp_id in employees:
@@ -37,7 +39,6 @@ def search_employee(employees):
             print(f"{key}: {value}")
     else:
         print("\n Employee Not Found!")
-
 
 def update_employee_status(employees):
     emp_id = input("\nEnter Employee ID: ")
@@ -52,7 +53,6 @@ def update_employee_status(employees):
     else:
         print("\nEmployee Not Found!")
 
-
 def view_employees(employees):
     if employees:
         print("\n Employee List:")
@@ -63,7 +63,6 @@ def view_employees(employees):
     else:
         print("\nNo employees found!\n")
 
-
 def delete_employee(employees):
     emp_id = input("\nEnter Employee ID to delete: ")
     if emp_id in employees:
@@ -72,14 +71,26 @@ def delete_employee(employees):
     else:
         print("\nEmployee Not Found!")
 
+def add_salary(name, salary):
+    salaries[name] = salary
+    print("Added", name, "with salary of", salary)
 
-# Dictionary to store employee data
-employees = {}
+def update_salary(name, new_salary):
+    if name in salaries:
+        salaries[name] = new_salary
+        print("Updated", name, "'s salary to", new_salary)
 
-# Main loop
+def display_salaries():
+    if not salaries:
+        print("No employee found")
+    else:
+        for name, salary in salaries.items():
+            print(name, ":", salary)
+
+
 while True:
     display_menu()
-    choice = input("Select an option between 1-6: ")
+    choice = input("Select an option between 1-8: ")
 
     if choice == '1':
         add_employee(employees)
@@ -92,6 +103,12 @@ while True:
     elif choice == '5':
         delete_employee(employees)
     elif choice == '6':
+        display_salaries()
+    elif choice == '7':
+        name = input("Enter Employee Name: ")
+        salary = int(input("Enter Salary: "))
+        add_salary(name, salary)
+    elif choice == '8':
         print("\nExiting Employee Management System...!")
         break
     else:
