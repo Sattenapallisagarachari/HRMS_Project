@@ -68,7 +68,6 @@ def delete_employee(employees):
     else:
         print("\nEmployee Not Found!")
 
-# Main loop
 while True:
     display_menu()
     choice = input("Select an option between 1-6: ")
