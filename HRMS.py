@@ -1,9 +1,13 @@
+import datetime
+
+
 employees = {}
 salaries = {}
+attendance_records = {}
 
 
 def display_menu():
-    print("\n***** Employee Management System *****")
+    print("\n***** Employee Management + Attendance System *****")
     print("1. Add Employee")
     print("2. Search Employee")
     print("3. Activate/Inactivate Employee")
@@ -11,8 +15,9 @@ def display_menu():
     print("5. Delete Employee")
     print("6. Add/Update Salary")
     print("7. Display Salaries")
-    print("8. Exit")
-
+    print("8. Mark Attendance")
+    print("9. View Attendance Records")
+    print("10. Exit")
 
 
 def add_employee(employees):
@@ -22,7 +27,7 @@ def add_employee(employees):
     phone = input("Enter Employee Phone Number: ")
     department = input("Enter Employee Department: ")
     designation = input("Enter Employee Designation: ")
-    status = "Active"  # Default status
+    status = "Active"
 
     employees[emp_id] = {
         "Name": name,
@@ -70,8 +75,8 @@ def delete_employee(employees):
     if emp_id in employees:
         name = employees[emp_id]["Name"]
         del employees[emp_id]
-        if name in salaries:
-            del salaries[name]
+        salaries.pop(emp_id, None)
+        attendance_records.pop(emp_id, None)
         print(f"\nEmployee ID {emp_id} deleted successfully!\n")
     else:
         print("\nEmployee Not Found!")
@@ -79,28 +84,49 @@ def delete_employee(employees):
 def add_or_update_salary(employees, salaries):
     emp_id = input("\nEnter Employee ID for salary update: ")
     if emp_id in employees:
-        name = employees[emp_id]["Name"]
         try:
-            salary = float(input(f"Enter new salary for {name}: "))
-            salaries[name] = salary
-            print(f"Salary for {name} set to {salary}\n")
+            salary = float(input(f"Enter new salary for {employees[emp_id]['Name']}: "))
+            salaries[emp_id] = salary
+            print(f"Salary for {employees[emp_id]['Name']} set to {salary}\n")
         except ValueError:
             print("Invalid salary input! Please enter a numeric value.\n")
     else:
         print("Employee ID not found!")
 
-def display_salaries(salaries):
+def display_salaries(employees, salaries):
     if not salaries:
         print("\nNo salaries found!\n")
     else:
         print("\nEmployee Salaries:")
-        for name, salary in salaries.items():
-            print(f"{name}: {salary}")
+        for emp_id, salary in salaries.items():
+            name = employees.get(emp_id, {}).get("Name", "Unknown")
+            print(f"{name} (ID: {emp_id}): {salary}")
+
+
+def mark_attendance(attendance_records, employees):
+    emp_id = input("\nEnter Employee ID to mark attendance: ")
+    if emp_id in employees:
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        if emp_id not in attendance_records:
+            attendance_records[emp_id] = []
+        attendance_records[emp_id].append(timestamp)
+        print(f"\nAttendance marked for Employee ID {emp_id} at {timestamp}\n")
+    else:
+        print("\nEmployee ID not found!")
+
+def view_attendance(attendance_records, employees):
+    emp_id = input("\nEnter Employee ID to view attendance: ")
+    if emp_id in attendance_records:
+        print(f"\nAttendance records for Employee ID {emp_id} ({employees.get(emp_id, {}).get('Name', 'Unknown')}):")
+        for record in attendance_records[emp_id]:
+            print(record)
+    else:
+        print("\nNo attendance records found!")
 
 
 while True:
     display_menu()
-    choice = input("Select an option between 1-8: ")
+    choice = input("Select an option between 1-10: ")
 
     if choice == '1':
         add_employee(employees)
@@ -115,9 +141,13 @@ while True:
     elif choice == '6':
         add_or_update_salary(employees, salaries)
     elif choice == '7':
-        display_salaries(salaries)
+        display_salaries(employees, salaries)
     elif choice == '8':
-        print("\nExiting Employee Management System...!")
+        mark_attendance(attendance_records, employees)
+    elif choice == '9':
+        view_attendance(attendance_records, employees)
+    elif choice == '10':
+        print("\nExiting System... Goodbye!\n")
         break
     else:
         print("\nInvalid choice! Please select a valid option.\n")
