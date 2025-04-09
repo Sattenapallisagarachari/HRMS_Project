@@ -174,7 +174,7 @@ def view_all_payslips(payslips, employees):
         print("\nNo payslips have been generated yet.\n")
         return
 
-    print("\n***** All Employee Payslips *****\n")
+    print("\n****** All Employee Payslips ******\n")
     for emp_id, slips in payslips.items():
         employee_name = employees.get(emp_id, {}).get("Name", "Unknown")
         print(f"\nPayslips for {employee_name} (ID: {emp_id}):")
