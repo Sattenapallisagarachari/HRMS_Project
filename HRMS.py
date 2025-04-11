@@ -1,9 +1,13 @@
+from datetime import datetime, timedelta
 import datetime
 
 employees = {}
 salaries = {}
 attendance_records = {}
 payslips = {}
+leaves = {}
+leave_requests = []
+leave_history = {}
 
 def display_menu():
     print("\n***** Employee Management + Attendance System *****")
@@ -19,7 +23,11 @@ def display_menu():
     print("10. Generate Payslip")
     print("11. View Payslips by Employee")
     print("12. View All Payslips")
-    print("13. Exit")
+    print("13. Add/Update Leaves")
+    print("14. Apply for Leave")
+    print("15. Process Leave Request")
+    print("16. View Leave History")
+    print("17. Exit")
 
 def add_employee(employees):
     emp_id = input("Enter Employee ID: ")
@@ -183,10 +191,68 @@ def view_all_payslips(payslips, employees):
             for key, value in slip.items():
                 print(f"{key}: {value}")
 
+def add_or_update_leaves(emp_id, leave_balance):
+    leaves[emp_id] = leave_balance
+    if emp_id not in leave_history:
+        leave_history[emp_id] = []
+    print(f"Leave balance for Employee ID {emp_id} set to {leave_balance}")
+
+def apply_leave(emp_id, days, start_date):
+    if emp_id not in leaves:
+        print(f"Employee {emp_id} not found or leave balance not set.")
+        return
+    
+    try:
+        start_dt = datetime.strptime(start_date, "%d/%m/%Y")
+    except ValueError:
+        print("Invalid date format. Use DD/MM/YYYY.")
+        return
+
+    end_dt = start_dt + timedelta(days=days - 1)
+    timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    
+    leave_requests.append((emp_id, days, start_dt.strftime("%d/%m/%Y"), end_dt.strftime("%d/%m/%Y"), timestamp))  
+    print(f"Leave request submitted for Employee {emp_id}, Days: {days}, From: {start_dt.strftime('%d/%m/%Y')} To: {end_dt.strftime('%d/%m/%Y')} at {timestamp}")
+
+def process_leave():
+    if not leave_requests:
+        print("No pending leave requests.")
+        return
+    
+    emp_id, days, start_date, end_date, timestamp = leave_requests.pop(0)
+    
+    if leaves.get(emp_id, 0) >= days:
+        leaves[emp_id] -= days  
+        status = "Approved"
+    else:
+        status = "Rejected (Insufficient balance)"
+    
+    leave_history[emp_id].append({
+        "days": days,
+        "from": start_date,
+        "to": end_date,
+        "Time of Approval": timestamp,
+        "status": status
+    })
+    
+    print(f"Leave request for Employee {emp_id} {status}.")
+
+def get_leave_balance(emp_id):
+    return leaves.get(emp_id, "Employee not found.")
+
+def get_leave_history(emp_id):
+    history = leave_history.get(emp_id)
+    if not history:
+        print("No history found.")
+    else:
+        for entry in history:
+            print(f"{entry}")
+
+
 # --- Main Program Loop ---
 while True:
     display_menu()
-    choice = input("Select an option between 1-13: ")
+    choice = input("Select an option between 1-17: ")
 
     if choice == '1':
         add_employee(employees)
@@ -213,6 +279,26 @@ while True:
     elif choice == '12':
         view_all_payslips(payslips, employees)
     elif choice == '13':
+        emp_id = input("Enter Employee ID: ")
+        try:
+            balance = int(input("Enter number of leave days to set: "))
+            add_or_update_leaves(emp_id, balance)
+        except ValueError:
+            print("Invalid number of days.")
+    elif choice == '14':
+        emp_id = input("Enter Employee ID: ")
+        try:
+            days = int(input("Enter number of leave days requested: "))
+            start_date = input("Enter start date (DD/MM/YYYY): ")
+            apply_leave(emp_id, days, start_date)
+        except ValueError:
+            print("Invalid input.")
+    elif choice == '15':
+        process_leave()
+    elif choice == '16':
+        emp_id = input("Enter Employee ID to view leave history: ")
+        get_leave_history(emp_id)
+    elif choice == '17':
         print("\nExiting System... Goodbye!\n")
         break
     else:
