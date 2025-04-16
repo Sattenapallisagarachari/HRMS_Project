@@ -1,4 +1,3 @@
-from datetime import datetime, timedelta
 import datetime
 
 employees = {}
@@ -29,7 +28,7 @@ def display_menu():
     print("16. View Leave History")
     print("17. Exit")
 
-def add_employee(employees):
+def add_employee():
     emp_id = input("Enter Employee ID: ")
     name = input("Enter Employee Name: ")
     email = input("Enter Employee Email: ")
@@ -48,7 +47,7 @@ def add_employee(employees):
     }
     print(f"\nEmployee {name} (ID: {emp_id}) added successfully!\n")
 
-def search_employee(employees):
+def search_employee():
     emp_id = input("\nEnter Employee ID to search: ")
     if emp_id in employees:
         print("\nEmployee Found:")
@@ -57,7 +56,7 @@ def search_employee(employees):
     else:
         print("\nEmployee Not Found!")
 
-def update_employee_status(employees):
+def update_employee_status():
     emp_id = input("\nEnter Employee ID: ")
     if emp_id in employees:
         status = input("Enter Employee Status (Active/Inactive): ")
@@ -69,7 +68,7 @@ def update_employee_status(employees):
     else:
         print("\nEmployee Not Found!")
 
-def view_employees(employees):
+def view_employees():
     if employees:
         print("\nEmployee List:")
         for emp_id, details in employees.items():
@@ -79,7 +78,7 @@ def view_employees(employees):
     else:
         print("\nNo employees found!\n")
 
-def delete_employee(employees):
+def delete_employee():
     emp_id = input("\nEnter Employee ID to delete: ")
     if emp_id in employees:
         del employees[emp_id]
@@ -90,7 +89,7 @@ def delete_employee(employees):
     else:
         print("\nEmployee Not Found!")
 
-def add_or_update_salary(employees, salaries):
+def add_or_update_salary():
     emp_id = input("\nEnter Employee ID for salary update: ")
     if emp_id in employees:
         try:
@@ -102,7 +101,7 @@ def add_or_update_salary(employees, salaries):
     else:
         print("Employee ID not found!")
 
-def display_salaries(employees, salaries):
+def display_salaries():
     if not salaries:
         print("\nNo salaries found!\n")
     else:
@@ -111,7 +110,7 @@ def display_salaries(employees, salaries):
             name = employees.get(emp_id, {}).get("Name", "Unknown")
             print(f"{name} (ID: {emp_id}): {salary}")
 
-def mark_attendance(attendance_records, employees):
+def mark_attendance():
     emp_id = input("\nEnter Employee ID to mark attendance: ")
     if emp_id in employees:
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -122,16 +121,16 @@ def mark_attendance(attendance_records, employees):
     else:
         print("\nEmployee ID not found!")
 
-def view_attendance(attendance_records, employees):
+def view_attendance():
     emp_id = input("\nEnter Employee ID to view attendance: ")
     if emp_id in attendance_records:
-        print(f"\nAttendance records for Employee ID {emp_id} ({employees.get(emp_id, {}).get('Name', 'Unknown')}):")
+        print(f"\nAttendance records for Employee ID {emp_id}:")
         for record in attendance_records[emp_id]:
             print(record)
     else:
         print("\nNo attendance records found!")
 
-def generate_payslip(employees, salaries, payslips):
+def generate_payslip():
     emp_id = input("\nEnter Employee ID to generate payslip: ")
     if emp_id in employees:
         employee = employees[emp_id]
@@ -166,10 +165,10 @@ def generate_payslip(employees, salaries, payslips):
     else:
         print("\nEmployee Not Found!")
 
-def view_payslips(payslips, employees):
+def view_payslips():
     emp_id = input("\nEnter Employee ID to view payslips: ")
     if emp_id in payslips:
-        print(f"\nPayslips for Employee ID {emp_id} ({employees.get(emp_id, {}).get('Name', 'Unknown')}):")
+        print(f"\nPayslips for Employee ID {emp_id}:")
         for i, slip in enumerate(payslips[emp_id], 1):
             print(f"\n--- Payslip #{i} ---")
             for key, value in slip.items():
@@ -177,7 +176,7 @@ def view_payslips(payslips, employees):
     else:
         print("\nNo payslips found for this employee.")
 
-def view_all_payslips(payslips, employees):
+def view_all_payslips():
     if not payslips:
         print("\nNo payslips have been generated yet.\n")
         return
@@ -191,113 +190,89 @@ def view_all_payslips(payslips, employees):
             for key, value in slip.items():
                 print(f"{key}: {value}")
 
-def add_or_update_leaves(emp_id, leave_balance):
-    leaves[emp_id] = leave_balance
-    if emp_id not in leave_history:
-        leave_history[emp_id] = []
-    print(f"Leave balance for Employee ID {emp_id} set to {leave_balance}")
-
-def apply_leave(emp_id, days, start_date):
-    if emp_id not in leaves:
-        print(f"Employee {emp_id} not found or leave balance not set.")
-        return
-    
+def add_or_update_leaves():
+    emp_id = input("Enter Employee ID: ")
     try:
-        start_dt = datetime.strptime(start_date, "%d/%m/%Y")
+        balance = int(input("Enter number of leave days to set: "))
+        leaves[emp_id] = balance
+        if emp_id not in leave_history:
+            leave_history[emp_id] = []
+        print(f"Leave balance for Employee ID {emp_id} set to {balance}")
     except ValueError:
-        print("Invalid date format. Use DD/MM/YYYY.")
-        return
+        print("Invalid number of days.")
 
-    end_dt = start_dt + timedelta(days=days - 1)
-    timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    
-    leave_requests.append((emp_id, days, start_dt.strftime("%d/%m/%Y"), end_dt.strftime("%d/%m/%Y"), timestamp))  
-    print(f"Leave request submitted for Employee {emp_id}, Days: {days}, From: {start_dt.strftime('%d/%m/%Y')} To: {end_dt.strftime('%d/%m/%Y')} at {timestamp}")
+def apply_leave():
+    emp_id = input("Enter Employee ID: ")
+    try:
+        days = int(input("Enter number of leave days requested: "))
+        start_date = input("Enter start date (DD/MM/YYYY): ")
+        leave_requests.append((emp_id, days, start_date))
+        print(f"Leave request for Employee {emp_id} submitted.")
+    except ValueError:
+        print("Invalid input.")
 
 def process_leave():
-    if not leave_requests:
-        print("No pending leave requests.")
-        return
-    
-    emp_id, days, start_date, end_date, timestamp = leave_requests.pop(0)
-    
-    if leaves.get(emp_id, 0) >= days:
-        leaves[emp_id] -= days  
-        status = "Approved"
+    if leave_requests:
+        emp_id, days, start_date = leave_requests.pop(0)
+        if leaves.get(emp_id, 0) >= days:
+            leaves[emp_id] -= days
+            status = "Approved"
+        else:
+            status = "Rejected (Insufficient balance)"
+        leave_history[emp_id].append({
+            "days": days,
+            "from": start_date,
+            "status": status
+        })
+        print(f"Leave request for Employee {emp_id} {status}.")
     else:
-        status = "Rejected (Insufficient balance)"
-    
-    leave_history[emp_id].append({
-        "days": days,
-        "from": start_date,
-        "to": end_date,
-        "Time of Approval": timestamp,
-        "status": status
-    })
-    
-    print(f"Leave request for Employee {emp_id} {status}.")
+        print("No pending leave requests.")
 
-def get_leave_balance(emp_id):
-    return leaves.get(emp_id, "Employee not found.")
-
-def get_leave_history(emp_id):
+def get_leave_history():
+    emp_id = input("Enter Employee ID to view leave history: ")
     history = leave_history.get(emp_id)
     if not history:
-        print("No history found.")
+        print("No leave history found.")
     else:
         for entry in history:
             print(f"{entry}")
 
-
-# --- Main Program Loop ---
 while True:
     display_menu()
     choice = input("Select an option between 1-17: ")
 
     if choice == '1':
-        add_employee(employees)
+        add_employee()
     elif choice == '2':
-        search_employee(employees)
+        search_employee()
     elif choice == '3':
-        update_employee_status(employees)
+        update_employee_status()
     elif choice == '4':
-        view_employees(employees)
+        view_employees()
     elif choice == '5':
-        delete_employee(employees)
+        delete_employee()
     elif choice == '6':
-        add_or_update_salary(employees, salaries)
+        add_or_update_salary()
     elif choice == '7':
-        display_salaries(employees, salaries)
+        display_salaries()
     elif choice == '8':
-        mark_attendance(attendance_records, employees)
+        mark_attendance()
     elif choice == '9':
-        view_attendance(attendance_records, employees)
+        view_attendance()
     elif choice == '10':
-        generate_payslip(employees, salaries, payslips)
+        generate_payslip()
     elif choice == '11':
-        view_payslips(payslips, employees)
+        view_payslips()
     elif choice == '12':
-        view_all_payslips(payslips, employees)
+        view_all_payslips()
     elif choice == '13':
-        emp_id = input("Enter Employee ID: ")
-        try:
-            balance = int(input("Enter number of leave days to set: "))
-            add_or_update_leaves(emp_id, balance)
-        except ValueError:
-            print("Invalid number of days.")
+        add_or_update_leaves()
     elif choice == '14':
-        emp_id = input("Enter Employee ID: ")
-        try:
-            days = int(input("Enter number of leave days requested: "))
-            start_date = input("Enter start date (DD/MM/YYYY): ")
-            apply_leave(emp_id, days, start_date)
-        except ValueError:
-            print("Invalid input.")
+        apply_leave()
     elif choice == '15':
         process_leave()
     elif choice == '16':
-        emp_id = input("Enter Employee ID to view leave history: ")
-        get_leave_history(emp_id)
+        get_leave_history()
     elif choice == '17':
         print("\nExiting System... Goodbye!\n")
         break
